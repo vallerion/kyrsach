@@ -45,8 +45,11 @@ class ObjectController extends Controller {
 
     public function download($id) {
 
+        if( ! Auth::check())
+            return $this->response->redirect($this->request->referer());
+
         $object = $this->object->find($id);
-        if(is_null($object) || ! Auth::check())
+        if(is_null($object))
             return $this->response->status(404);
 
         $this->download->create($object->id, Auth::user()->id);

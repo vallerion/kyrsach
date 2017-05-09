@@ -93,6 +93,8 @@ class Request extends Message implements ServerRequestInterface {
 
         $this->headers['SCHEME'] = $_SERVER['REQUEST_SCHEME'];
 
+        $this->headers['REFERER'] = $_SERVER['HTTP_REFERER'];
+
 //        $this->headers['COOKIE'] = $_SERVER['HTTP_COOKIE'];
 
         $this->headers['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'];
@@ -166,6 +168,10 @@ class Request extends Message implements ServerRequestInterface {
         }
 
         return $this->headers;
+    }
+
+    public function referer() {
+        return $this->headers['REFERER'];
     }
 
     public function host() {
