@@ -24,4 +24,15 @@ class Model {
         return (new static)->table;
     }
 
+    public function find($key) {
+        $query = "select * from {$this->table} where {$this->key} = {$key}";
+
+        $fetch = DB::query($query, static::class);
+
+        if( ! empty($fetch))
+            return $fetch[0];
+        else
+            return null;
+    }
+
 }

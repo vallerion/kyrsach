@@ -2,78 +2,69 @@
 
 namespace Framework\App;
 
-use Framework\Helpers\Helper;
 use Framework\Http\Request;
 use Framework\Traits\Singleton;
 use Framework\Database\DB;
 use Framework\Database\Table;
+use Framework\Model\Auth as AuthModel;
 
 class Auth {
 
     use Singleton;
 
-    protected static $sessionName;
-
     protected static $user;
 
-    protected function __construct($sessionName) {
+    protected static $auth;
 
-        self::$sessionName = $sessionName;
-        
-        ini_set('session.name', self::$sessionName);
+    protected function __construct($sessionName) {
         session_start();
+
+        static::$auth = new AuthModel();
+
+        static::check();
     }
 
     public static function login($email, $password) {
-        // находим юзера по парлю и емейлу
-        // генерим хэш записываем в базу и в сессию
-        // если нужно получить текущего юзера, чекаем хэш и по нему достаем из базы
+        if(static::check())
+            return static::user();
 
+        $user = static::$auth->login($email, $password);
+        if(is_null($user))
+            return null;
 
-        $user = DB::table(Table::UsersTable())->where([
-            'email' => $email,
-            'password' => $password
-        ])->find_one();
+        static::$user = $user;
+        $session = md5($user->id . time());
+        static::$auth->saveHash($user->id, $session);
+        setcookie('onion_id', $session, time() + 7776000);
 
-        if($user !== false) {
-            self::$user = $user;
-
-            $hash = md5($user->email . $user->id);
-            $_SESSION['auth'] = $hash;
-            $user->hash = $hash;
-            $user->save();
-
-            return self::$user;
-        }
-
-        return null;
+        return static::user();
     }
 
     public static function user() {
-
-        if(self::$user)
-            return self::$user;
-
-
-        if(isset($_SESSION['auth'])){
-
-            $hash = $_SESSION['auth'];
-
-            $user = DB::table(Table::UsersTable())->where([
-                'hash' => $hash
-            ])->find_one();
-
-            if($user !== false) {
-                self::$user = $user;
-                return self::$user;
-            }
-
-        }
-        return null;
+        return static::$user;
     }
 
     public static function logout() {
-        unset($_SESSION['auth']);
+        setcookie('onion_id', '', time() - 3600);
+    }
+
+    public static function check() {
+        if( ! is_null(static::$user))
+            return true;
+
+        $session = isset($_COOKIE['onion_id']) ? $_COOKIE['onion_id'] : false;
+
+        if( ! $session)
+            return false;
+        
+        $user = static::$auth->loginByHash($session);
+
+        if( ! is_null($user)) {
+            static::$user = $user;
+            return true;
+        }
+        else
+            return false;
     }
 
 

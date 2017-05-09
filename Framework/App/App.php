@@ -60,9 +60,9 @@ class App {
 
         $routeResponse = $this->routing();
         
-        if($routeResponse && ! empty($routeResponse)) {
-            $this->response->setBody(json_encode($routeResponse));
-        }
+//        if($routeResponse && ! empty($routeResponse)) {
+//            $this->response->setBody(json_encode($routeResponse));
+//        }
 
         $this->response->respond();
 

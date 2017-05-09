@@ -23,6 +23,8 @@ class Response extends Message implements ResponseInterface {
 
     protected $view;
 
+    protected $file;
+
     protected function __construct($status = 200, $headers = null, $body = null) {
 
         $this->status = $this->normalizeStatusCode($status);
@@ -102,6 +104,20 @@ class Response extends Message implements ResponseInterface {
 
     public function view($template, $values = []) {
         $this->view->template($template, $values);
+    }
+
+    public function file($file) {
+        if(file_exists($file)) {
+            $this->withAddedHeader('Content-Description', 'File Transfer');
+            $this->withAddedHeader('Content-Type', mime_content_type($file));
+            $this->withAddedHeader('Content-Disposition', 'attachment; filename="' . basename($file) . '"');
+            $this->withAddedHeader('Expires', 0);
+            $this->withAddedHeader('Content-Transfer-Encoding', 'Binary');
+            $this->withAddedHeader('Cache-Control', 'public');
+            $this->withAddedHeader('Pragma', 'public');
+            $this->withAddedHeader('Content-Length', filesize($file));
+            $this->file = $file;
+        }
     }
 
 
@@ -226,6 +242,9 @@ class Response extends Message implements ResponseInterface {
     }
 
     public function __toString() {
+
+        if(isset($this->file))
+            readfile($this->file);
 
         $output = (string)$this->view->render();
 

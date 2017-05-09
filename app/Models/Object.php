@@ -21,4 +21,23 @@ class Object extends Model {
             order by object.rate desc
         ", static::class);
     }
+
+    public function type() {
+        $result = DB::query("
+            select * from object_type where id = {$this->type_id}
+        ");
+
+        return ! empty($result) ?
+            $result[0] :
+            null;
+    }
+
+    public function authors() {
+        return DB::query("
+            select author.*, role.name as role
+              from author
+              join object_author_role on object_author_role.author_id = author.id and object_author_role.object_id = {$this->id}
+              join role on role.id = object_author_role.role_id
+        ", Author::class);
+    }
 }
