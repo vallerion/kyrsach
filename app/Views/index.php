@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="<?=url('assets/css/materialize.css')?>">
     <link rel="stylesheet" href="<?=url('assets/css/app.css')?>">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 

@@ -93,7 +93,7 @@ class Request extends Message implements ServerRequestInterface {
 
         $this->headers['SCHEME'] = $_SERVER['REQUEST_SCHEME'];
 
-        $this->headers['REFERER'] = $_SERVER['HTTP_REFERER'];
+        $this->headers['REFERER'] = $_SERVER['HTTP_REFERER'] ?? '';
 
 //        $this->headers['COOKIE'] = $_SERVER['HTTP_COOKIE'];
 

@@ -52,7 +52,9 @@ class Auth {
         if( ! is_null(static::$user))
             return true;
 
-        $session = isset($_COOKIE['onion_id']) ? $_COOKIE['onion_id'] : false;
+        $session = isset($_COOKIE['onion_id']) && ! empty($_COOKIE['onion_id']) ?
+                    $_COOKIE['onion_id'] : 
+                    false;
 
         if( ! $session)
             return false;
