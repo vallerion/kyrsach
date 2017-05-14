@@ -20,7 +20,12 @@
             <li class="waves-effect"><a href="<?=url('users')?>">Пользователи</a></li>
         </ul>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="waves-effect"><a href="<?=url('/login')?>">Вход</a></li>
+            <?php if(\Framework\App\Auth::check()): ?>
+                <li class="waves-effect"><a href="<?=url('/profile/' . \Framework\App\Auth::user()->id)?>"><?=\Framework\App\Auth::user()->name?></a></li>
+                <li class="waves-effect"><a href="<?=url('/logout')?>">Выход</a></li>
+            <?php else: ?>
+                <li class="waves-effect"><a href="<?=url('/login')?>">Вход</a></li>
+            <?php endif; ?>
         </ul>
     </div>
 </nav>

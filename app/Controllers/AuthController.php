@@ -24,20 +24,57 @@ class AuthController extends Controller {
         return $this->response->view('login');
     }
 
-    public function login() {
+    public function getLogout() {
+        $this->auth->logout();
 
-        if(empty($this->request->email) || empty($this->request->password))
+        return $this->response->redirect('/');
+    }
+
+    public function login() {
+        
+        $email = $this->request->email;
+        $password = $this->request->password;
+
+        if(empty($email) || empty($password))
             return $this->response->redirect('login');
 
         $user = $this->auth->login(
             $this->request->email,
             $this->request->password
         );
-        ddumper($this->request);
+        
+        if($user)
+            return $this->response->redirect('profile/' . $user->id);
+        else
+            return $this->response->redirect('login');
     }
 
     public function getRegistration() {
         return $this->response->view('registration');
+    }
+
+    public function registration() {
+        $name = $this->request->name;
+        $email = $this->request->email;
+        $password = $this->request->password;
+        $phone = $this->request->phone;
+
+        if(empty($email) || empty($password) || empty($name))
+            return $this->response->redirect('registration');
+
+
+        $user = $this->user->create([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'phone' => $phone,
+        ]);
+
+
+        if($user)
+            return $this->response->redirect('login/' . $user->id);
+        else
+            return $this->response->redirect('registration');
     }
 
 

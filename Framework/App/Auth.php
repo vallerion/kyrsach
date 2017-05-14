@@ -12,7 +12,7 @@ class Auth {
 
     use Singleton;
 
-    protected static $user;
+    protected static $user = null;
 
     protected static $auth;
 
@@ -20,8 +20,6 @@ class Auth {
         session_start();
 
         static::$auth = new AuthModel();
-
-        static::check();
     }
 
     public static function login($email, $password) {

@@ -9,6 +9,19 @@ class User extends Model {
 
     protected $table = 'users';
 
+    public function create($arguments) {
+        return DB::query("
+            insert into users (name, email, password, phone)
+              values(
+                '{$arguments['name']}',
+                '{$arguments['email']}',
+                '{$arguments['password']}',
+                '{$arguments['phone']}'
+              )
+            returning *
+        ", static::class);
+    }
+
     public function top($count = 10) {
         return DB::query("
             with rate_users as (

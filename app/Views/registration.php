@@ -50,6 +50,13 @@
 
                         <div class='row'>
                             <div class='input-field col s12'>
+                                <input class='validate' type='number' name='phone' id='phone' />
+                                <label for='phone'>Номер</label>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12'>
                                 <input class='validate' type='email' name='email' id='email' />
                                 <label for='email'>Email</label>
                             </div>

@@ -14,7 +14,7 @@ class Auth extends Model {
         $user = DB::query("
             select * from {$this->table}
               where 
-                email = \"{$email}\" and password = \"{$password}\"
+                email = '{$email}' and password = '{$password}'
         ", User::class);
 
         return empty($user) ?
@@ -26,7 +26,7 @@ class Auth extends Model {
         $user = DB::query("
             select * from {$this->table}
               where 
-                session = {$hash}
+                \"session\" = '{$hash}'
         ", User::class);
         
         return empty($user) ?
@@ -37,7 +37,7 @@ class Auth extends Model {
     public function saveHash($id, $hash) {
         DB::query("
                 update {$this->table} 
-                  set session = {$hash}
+                  set \"session\" = '{$hash}'
                       where 
                         id = {$id}
             ");
