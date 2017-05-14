@@ -7,6 +7,9 @@ use Framework\Model\Model;
 
 class User extends Model {
 
+    const ADMIN = 'admin';
+    const USER = 'user';
+
     protected $table = 'users';
 
     public function create($arguments) {
@@ -46,6 +49,14 @@ class User extends Model {
             where rate_download <= $count
             order by rate_download
         ", static::class);
+    }
+
+    public function isAdmin() {
+        return $this->type === static::ADMIN;
+    }
+
+    public function isUser() {
+        return $this->type === static::USER;
     }
 
 }

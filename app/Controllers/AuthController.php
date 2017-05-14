@@ -21,7 +21,9 @@ class AuthController extends Controller {
     }
 
     public function getLogin() {
-        return $this->response->view('login');
+        return Auth::check() ?
+            $this->response->view('/') :
+            $this->response->view('login');
     }
 
     public function getLogout() {
@@ -50,7 +52,9 @@ class AuthController extends Controller {
     }
 
     public function getRegistration() {
-        return $this->response->view('registration');
+        return Auth::check() ?
+            $this->response->view('/') :
+            $this->response->view('registration');
     }
 
     public function registration() {
