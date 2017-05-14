@@ -23,12 +23,12 @@
 </nav>
 
 <div class="section"></div>
-<main>
+<main class="col s12">
     <center>
 
         <div class="section"></div>
 
-        <h5 class="teal-text text-lighten-1">Вход в систему</h5>
+        <h5 class="teal-text text-lighten-1">Registration</h5>
         <div class="section"></div>
 
         <div class="container">
@@ -38,6 +38,13 @@
                     <form class="col s12" method="post">
                         <div class='row'>
                             <div class='col s12'>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input class='validate' type='text' name='name' id='name' />
+                                <label for='name'>Логин</label>
                             </div>
                         </div>
 
@@ -61,14 +68,14 @@
                         <br />
                         <center>
                             <div class='row'>
-                                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect teal lighten-1'>Войти</button>
+                                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect teal lighten-1'>Зарегистрироваться</button>
                             </div>
                         </center>
                     </form>
                 </div>
             </div>
         </div>
-        <a href="<?=url('registration')?>">Регистрация</a>
+        <a href="<?=url('login')?>">Вход</a>
     </center>
 
     <div class="section"></div>

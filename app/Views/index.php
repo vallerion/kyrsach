@@ -19,6 +19,9 @@
             <li class="waves-effect"><a href="<?=url('objects')?>">Объекты</a></li>
             <li class="waves-effect"><a href="<?=url('users')?>">Пользователи</a></li>
         </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="waves-effect"><a href="<?=url('/login')?>">Вход</a></li>
+        </ul>
     </div>
 </nav>
 

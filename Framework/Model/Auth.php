@@ -14,7 +14,7 @@ class Auth extends Model {
         $user = DB::query("
             select * from {$this->table}
               where 
-                email = {$email} and password = {$password}
+                email = \"{$email}\" and password = \"{$password}\"
         ", User::class);
 
         return empty($user) ?

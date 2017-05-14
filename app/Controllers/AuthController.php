@@ -25,11 +25,19 @@ class AuthController extends Controller {
     }
 
     public function login() {
+
+        if(empty($this->request->email) || empty($this->request->password))
+            return $this->response->redirect('login');
+
         $user = $this->auth->login(
             $this->request->email,
             $this->request->password
         );
         ddumper($this->request);
+    }
+
+    public function getRegistration() {
+        return $this->response->view('registration');
     }
 
 
