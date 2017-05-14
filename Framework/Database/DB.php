@@ -24,7 +24,7 @@ class DB {
 
         list($user, $password) = explode(':', $user);
 
-        $connection = new Database(
+        static::$connectionPool[$nameConnection] = new Database(
             $driver,
             $host,
             $port,
@@ -33,19 +33,16 @@ class DB {
             $password
         );
 
-
-        static::$connectionPool[$nameConnection] = $connection;
-
         static::connection($nameConnection);
     }
 
     public static function connection($name = null) {
-        if(is_null($name))
-            return static::$currentConnection;
-        else {
+        if( ! is_null($name) && isset(static::$connectionPool[$name]))
             static::$currentConnection = static::$connectionPool[$name];
-            return static::$instance;
-        }
+
+        dumper(static::$currentConnection);
+
+        return static::$instance;
     }
 
     public static function query($query, $class = null) {

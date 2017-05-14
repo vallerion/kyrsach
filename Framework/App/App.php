@@ -54,6 +54,16 @@ class App {
         $this->view = View::getInstance();
 
         $this->makeDbConnections();
+
+        if(Auth::check()) {
+            $user = Auth::user();
+
+            if($user->isAdmin())
+                DB::connection('admin');
+            else
+                DB::connection('user');
+
+        }
     }
 
     public function run() {
@@ -101,7 +111,8 @@ class App {
                 stristr($value['mode'], 'read')
             );
         }
-        
+
+        DB::connection('guest');
     }
 
     public function __toString() {

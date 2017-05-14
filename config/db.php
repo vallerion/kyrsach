@@ -2,7 +2,7 @@
 
 return [
 
-    'kyrsach' => [
+    'guest' => [
         'mode' => 'write|read',
         'driver' => 'pgsql',
         'host' => 'localhost',
