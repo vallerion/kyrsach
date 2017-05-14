@@ -11,16 +11,24 @@
 <body>
 
 
-    <nav>
-        <div class="nav-wrapper teal lighten-1">
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li class="waves-effect"><a href="<?=url('/')?>">Главная</a></li>
-                <li class="waves-effect"><a href="<?=url('authors')?>">Авторы</a></li>
-                <li class="waves-effect"><a href="<?=url('objects')?>">Объекты</a></li>
-                <li class="waves-effect"><a href="<?=url('users')?>">Пользователи</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav>
+    <div class="nav-wrapper teal lighten-1">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li class="waves-effect"><a href="<?=url('/')?>">Главная</a></li>
+            <li class="waves-effect"><a href="<?=url('authors')?>">Авторы</a></li>
+            <li class="waves-effect"><a href="<?=url('objects')?>">Объекты</a></li>
+            <li class="waves-effect"><a href="<?=url('users')?>">Пользователи</a></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <?php if(\Framework\App\Auth::check()): ?>
+                <li class="waves-effect"><a href="<?=url('/profile/' . \Framework\App\Auth::user()->id)?>"><?=\Framework\App\Auth::user()->name?></a></li>
+                <li class="waves-effect"><a href="<?=url('/logout')?>">Выход</a></li>
+            <?php else: ?>
+                <li class="waves-effect"><a href="<?=url('/login')?>">Вход</a></li>
+            <?php endif; ?>
+        </ul>
+    </div>
+</nav>
 
     <div class="container">
         <div class="row">
