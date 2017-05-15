@@ -63,3 +63,32 @@ if ( ! function_exists('url')) {
         return $path;
     }
 }
+
+
+if( ! function_exists('recursive_array_diff')) {
+    function recursive_array_diff($aArray1, $aArray2)
+    {
+        $aReturn = array();
+
+        foreach ($aArray1 as $mKey => $mValue) {
+
+            if (array_key_exists($mKey, $aArray2)) {
+
+                if (is_array($mValue)) {
+                    $aRecursiveDiff = recursive_array_diff($mValue, $aArray2[$mKey]);
+                    if (count($aRecursiveDiff)) {
+                        $aReturn[$mKey] = $aRecursiveDiff;
+                    }
+                } else {
+                    if ($mValue != $aArray2[$mKey]) {
+                        $aReturn[$mKey] = $mValue;
+                    }
+                }
+            } else {
+                $aReturn[$mKey] = $mValue;
+            }
+        }
+
+        return $aReturn;
+    }
+}

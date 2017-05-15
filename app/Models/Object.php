@@ -40,4 +40,52 @@ class Object extends Model {
               join role on role.id = object_author_role.role_id
         ", Author::class);
     }
+
+
+    public static function objectGenre($objectId, array $genreIds) {
+
+        $query = "insert into object_genre (object_id, genre_id) values";
+
+        foreach ($genreIds as $key => $genreId) {
+            $query .= "('{$objectId}','{$genreId}')";
+
+            if(isset($genreIds[$key + 1]))
+                $query .= ',';
+        }
+
+        return DB::query($query);
+    }
+
+    public function create(array $values) {
+        return DB::query("
+            insert into object (
+              \"name\",
+              type_id,
+              format,
+              path,
+              \"size\") 
+            values(
+              '{$values['name']}',
+              '{$values['type_id']}',
+              '{$values['format']}',
+              '{$values['path']}',
+              '{$values['size']}'
+            )
+            returning *
+        ", static::class);
+    }
+
+    public static function objectRoleAuthor(array $values) {
+
+        $query = "insert into object_author_role (object_id, author_id, role_id) values";
+        
+        foreach ($values as $key => $value) {
+            $query .= "('{$value['object']}','{$value['author']}','{$value['role']}')";
+
+            if(isset($values[$key + 1]))
+                $query .= ',';
+        }
+
+        return DB::query($query);
+    }
 }

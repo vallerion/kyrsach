@@ -1,5 +1,7 @@
 <?php
 
+define("PUBLIC_DIR", __DIR__);
+
 require __DIR__ . '/../vendor/autoload.php';
 
 use Framework\App\App;

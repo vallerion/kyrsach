@@ -131,7 +131,7 @@ class Request extends Message implements ServerRequestInterface {
 
         $this->body = $this->setBody($input);
 
-        $this->fields = array_diff($_REQUEST, $_COOKIE); // all but cookie
+        $this->fields = recursive_array_diff($_REQUEST, $_COOKIE); // all but cookie
 
         $this->cookie = $_COOKIE;
 
