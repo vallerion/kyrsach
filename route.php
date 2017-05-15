@@ -10,6 +10,7 @@ $route->post('objects/add', 'ObjectController@create');
 $route->get('download/{id}', 'ObjectController@download');
 
 $route->get('author/{id}', 'AuthorController@show');
+$route->get('authors', 'AuthorController@index');
 
 $route->get('login', 'AuthController@getLogin');
 $route->post('login', 'AuthController@login');

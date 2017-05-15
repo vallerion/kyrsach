@@ -28,4 +28,10 @@ class AuthorController extends Controller {
             'author' => $author
         ]);
     }
+
+    public function index() {
+        return $this->response->view('authors', [
+            'authors' => $this->author->all()
+        ]);
+    }
 }
