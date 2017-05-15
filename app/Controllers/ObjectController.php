@@ -117,8 +117,8 @@ class ObjectController extends Controller {
         $name = $this->request->name;
         $typeId = $this->request->type;
         $genreIds = $this->request->genre;
-        $authorIds = $this->request->author;
-        $roleIds = $this->request->role;
+        $authorIds = array_values($this->request->author);
+        $roleIds = array_values($this->request->role);
 
         $fileName = PUBLIC_DIR . '/assets/files/' . md5(time() . $file['name']) . '.' . $type;
         $this->saveFile($file['tmp_name'], $fileName);

@@ -23,9 +23,9 @@
 <nav>
     <div class="nav-wrapper teal lighten-1">
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li class="waves-effect active"><a href="<?=url('/')?>">Главная</a></li>
+            <li class="waves-effect"><a href="<?=url('/')?>">Главная</a></li>
             <li class="waves-effect"><a href="<?=url('authors')?>">Авторы</a></li>
-            <li class="">
+            <li class="active">
                 <a class="dropdown-button waves-effect" href="#!" data-activates="dropdown1">Объекты<i class="material-icons right">arrow_drop_down</i></a>
             </li>
             <li class="waves-effect"><a href="<?=url('users')?>">Пользователи</a></li>

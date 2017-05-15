@@ -34,10 +34,10 @@ class Object extends Model {
 
     public function authors() {
         return DB::query("
-            select author.*, role.name as role
+            select author.*
               from author
               join object_author_role on object_author_role.author_id = author.id and object_author_role.object_id = {$this->id}
-              join role on role.id = object_author_role.role_id
+            group by author.id
         ", Author::class);
     }
 

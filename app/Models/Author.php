@@ -31,4 +31,13 @@ class Author extends Model {
         ", static::class);
     }
 
+    public function roles() {
+        return DB::query("
+            select role.name
+              from role
+              join object_author_role on object_author_role.role_id = role.id and object_author_role.author_id = {$this->id}
+            group by object_author_role.author_id, role.name
+        ", Role::class);
+    }
+
 }

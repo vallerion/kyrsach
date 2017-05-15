@@ -23,7 +23,7 @@
 <nav>
     <div class="nav-wrapper teal lighten-1">
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li class="waves-effect active"><a href="<?=url('/')?>">Главная</a></li>
+            <li class="waves-effect"><a href="<?=url('/')?>">Главная</a></li>
             <li class="waves-effect"><a href="<?=url('authors')?>">Авторы</a></li>
             <li class="">
                 <a class="dropdown-button waves-effect" href="#!" data-activates="dropdown1">Объекты<i class="material-icons right">arrow_drop_down</i></a>
@@ -36,7 +36,7 @@
                 <li class="waves-effect"><a href="<?=url('/profile/' . \Framework\App\Auth::user()->id)?>"><?=\Framework\App\Auth::user()->name?></a></li>
                 <li class="waves-effect"><a href="<?=url('/logout')?>">Выход</a></li>
             <?php else: ?>
-                <li class="waves-effect"><a href="<?=url('/login')?>">Вход</a></li>
+                <li class="waves-effect active"><a href="<?=url('/login')?>">Вход</a></li>
             <?php endif; ?>
         </ul>
     </div>
