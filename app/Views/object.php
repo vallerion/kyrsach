@@ -66,6 +66,10 @@
                             <?php endforeach; ?>
                         </ul>
 
+                        <?php if(\Framework\App\Auth::check() && \Framework\App\Auth::user()->isAdmin()): ?>
+                        <a href="<?=url('object/edit/' . $object->id)?>" class="waves-effect waves-light btn green right"><i class="material-icons left">edit</i>Редактировать</a>
+                        <?php endif; ?>
+
                         <a href="<?=empty($object->path) ? '' : url('download/' . $object->id)?>" class="waves-effect waves-light btn blue right"><i class="material-icons left">get_app</i>Скачать</a>
                     </div>
                 </div>
