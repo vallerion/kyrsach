@@ -40,8 +40,6 @@ class DB {
         if( ! is_null($name) && isset(static::$connectionPool[$name]))
             static::$currentConnection = static::$connectionPool[$name];
 
-        dumper(static::$currentConnection);
-
         return static::$instance;
     }
 
