@@ -59,4 +59,15 @@ class User extends Model {
         return $this->type === static::USER;
     }
 
+    public function downloads($count = 25) {
+        return DB::query("
+            select download.create_at, object.id, object.name
+                from download
+                join object on object.id = download.object_id
+            where download.user_id = '{$this->id}'
+            order by download.create_at desc
+            limit '{$count}'
+        ", Object::class);
+    }
+
 }
