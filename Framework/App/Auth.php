@@ -33,7 +33,7 @@ class Auth {
         static::$user = $user;
         $session = md5($user->id . time());
         static::$auth->saveHash($user->id, $session);
-        setcookie('onion_id', $session, time() + 7776000);
+        setcookie('onion_id', $session, time() + 7776000, '/');
 
         return static::user();
     }
@@ -43,7 +43,7 @@ class Auth {
     }
 
     public static function logout() {
-        setcookie('onion_id', '', time() - 3600);
+        setcookie('onion_id', '', time() - 3600, '/');
     }
 
     public static function check() {

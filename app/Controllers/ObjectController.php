@@ -44,7 +44,7 @@ class ObjectController extends Controller {
     }
 
     public function download($id) {
-
+        
         if( ! Auth::check())
             return $this->response->redirect($this->request->referer());
 

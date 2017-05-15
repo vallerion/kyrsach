@@ -22,14 +22,14 @@ class AuthController extends Controller {
 
     public function getLogin() {
         return Auth::check() ?
-            $this->response->view('/') :
+            $this->response->redirect(url('/')) :
             $this->response->view('login');
     }
 
     public function getLogout() {
         $this->auth->logout();
 
-        return $this->response->redirect('/');
+        return $this->response->redirect(url('/'));
     }
 
     public function login() {
@@ -38,7 +38,7 @@ class AuthController extends Controller {
         $password = $this->request->password;
 
         if(empty($email) || empty($password))
-            return $this->response->redirect('login');
+            return $this->response->redirect(url('login'));
 
         $user = $this->auth->login(
             $this->request->email,
@@ -46,9 +46,9 @@ class AuthController extends Controller {
         );
         
         if($user)
-            return $this->response->redirect('profile/' . $user->id);
+            return $this->response->redirect(url('profile/' . $user->id));
         else
-            return $this->response->redirect('login');
+            return $this->response->redirect(url('login'));
     }
 
     public function getRegistration() {
@@ -64,7 +64,7 @@ class AuthController extends Controller {
         $phone = $this->request->phone;
 
         if(empty($email) || empty($password) || empty($name))
-            return $this->response->redirect('registration');
+            return $this->response->redirect(url('registration'));
 
 
         $user = $this->user->create([
@@ -76,9 +76,9 @@ class AuthController extends Controller {
 
 
         if($user)
-            return $this->response->redirect('login/' . $user->id);
+            return $this->response->redirect(url('login/' . $user->id));
         else
-            return $this->response->redirect('registration');
+            return $this->response->redirect(url('registration'));
     }
 
 
