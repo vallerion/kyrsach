@@ -9,6 +9,8 @@ $route->get('objects/add/select-row', 'ObjectController@getSelectRow');
 $route->post('objects/add', 'ObjectController@create');
 $route->get('download/{id}', 'ObjectController@download');
 
+$route->get('author/{id}', 'AuthorController@show');
+
 $route->get('login', 'AuthController@getLogin');
 $route->post('login', 'AuthController@login');
 $route->get('logout', 'AuthController@getLogout');
