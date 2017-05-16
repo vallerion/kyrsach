@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title><?=$object->name?> | Объект</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <link rel="stylesheet" href="<?=url('assets/css/materialize.css')?>">
@@ -69,9 +69,7 @@
                             <?php endforeach; ?>
                         </ul>
 
-                        <?php if(\Framework\App\Auth::check() && \Framework\App\Auth::user()->isAdmin()): ?>
-                        <a href="<?=url('object/edit/' . $object->id)?>" class="waves-effect waves-light btn green right"><i class="material-icons left">edit</i>Редактировать</a>
-                        <?php endif; ?>
+
 
                         <a href="<?=empty($object->path) ? '' : url('download/' . $object->id)?>" class="waves-effect waves-light btn blue right"><i class="material-icons left">get_app</i>Скачать</a>
                     </div>
