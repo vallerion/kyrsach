@@ -23,7 +23,7 @@ class Author extends Model {
                 join object_author_role on author.id = object_author_role.author_id
                 join object on object.id = object_author_role.object_id
                 join object_type on object_type.id = object.type_id
-                group by author.id, object_author_role.object_id, object.name, object_type.name
+                group by author.id, author.name, object_author_role.object_id, object.name, object_type.name
             )
             select *
             from best_authors_loc
