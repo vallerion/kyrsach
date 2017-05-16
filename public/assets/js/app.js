@@ -46,3 +46,41 @@ $(document).on('click', '.remove-row', function(){
     var block = $(this).parent().parent();
     block.remove();
 });
+
+
+$(document).on('keyup', '#search', function() {
+
+    var value = $(this).val();
+
+    if(value.length) {
+
+        $('.preloader-col').show();
+
+        $.ajax({
+            type: 'post',
+            url: '/objects/search',
+            data: {
+                search: value
+            },
+            success: function(response) {
+
+                try {
+                    response = JSON.parse(response);
+                }
+                catch (ex){}
+
+                var html = '';
+                $.each(response, function(index, value) {
+                    html += '<a class="collection-item" href="/object/' + value.id + '">' + value.name + '</a>';
+                });
+
+                $('#search-result').html(html);
+
+                $('.preloader-col').hide();
+            }
+        });
+
+
+    }
+
+});

@@ -88,4 +88,16 @@ class Object extends Model {
 
         return DB::query($query);
     }
+
+    public static function search($search) {
+        return DB::query("
+            select object.*
+              from object
+              join object_genre on object_genre.object_id = object.id
+              join genre on genre.id = object_genre.genre_id
+            where object.name ilike '%$search%' or
+                  genre.name ilike '%$search%'
+            group by object.id
+        ", Object::class);
+    }
 }

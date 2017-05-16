@@ -27,7 +27,9 @@
             <li class="active">
                 <a class="dropdown-button waves-effect" href="#!" data-activates="dropdown1">Объекты<i class="material-icons right">arrow_drop_down</i></a>
             </li>
+            <?php if(\Framework\App\Auth::check() && \Framework\App\Auth::user()->isAdmin()): ?>
             <li class="waves-effect"><a href="<?=url('users')?>">Пользователи</a></li>
+            <?php endif; ?>
         </ul>
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -45,15 +47,32 @@
         <div class="col s12">
             <nav>
                 <div class="nav-wrapper">
-                    <form>
-                        <div class="input-field">
-                            <input id="search" type="search" required>
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons">close</i>
-                        </div>
-                    </form>
+                    <div class="input-field">
+                        <input placeholder="Введите поисковый запрос" id="search" type="search" name="search" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
                 </div>
             </nav>
+        </div>
+
+        <div class="row">
+            <div class="preloader-col col s12 center-align valign-wrapper" style="display:none; padding: 15px;">
+                <div class="preloader-wrapper big active center-block">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div><div class="gap-patch">
+                            <div class="circle"></div>
+                        </div><div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="search-result" class="collection">
+            </div>
 
         </div>
     </div>

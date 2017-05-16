@@ -28,7 +28,10 @@
             <li class="active">
                 <a class="dropdown-button waves-effect" href="#!" data-activates="dropdown1">Объекты<i class="material-icons right">arrow_drop_down</i></a>
             </li>
-            <li class="waves-effect"><a href="<?=url('users')?>">Пользователи</a></li>
+
+            <?php if(\Framework\App\Auth::check() && \Framework\App\Auth::user()->isAdmin()): ?>
+                <li class="waves-effect"><a href="<?=url('users')?>">Пользователи</a></li>
+            <?php endif; ?>
         </ul>
 
         <ul id="nav-mobile" class="right hide-on-med-and-down">

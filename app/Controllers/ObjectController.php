@@ -163,6 +163,10 @@ class ObjectController extends Controller {
 
     public function search() {
         $search = $this->request->search;
+
+        $objects = Object::search($search);
+
+        return $this->response->write(json_encode($objects));
     }
 
 
