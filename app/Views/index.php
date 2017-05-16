@@ -71,7 +71,7 @@
                 <label class="label-top">Топ пользователей</label>
                 <div class="collection">
                     <?php foreach ($users as $user): ?>
-                        <a href="<?=url("user/{$user->id}")?>" class="collection-item"><?=$user->name?></a>
+                        <a href="<?=url("profile/{$user->id}")?>" class="collection-item"><?=$user->name?></a>
                     <?php endforeach; ?>
                 </div>
 

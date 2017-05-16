@@ -19,6 +19,7 @@
     <li class="divider"></li>
     <li><a href="<?=url('objects/search')?>">Поиск</a></li>
 </ul>
+
 <nav>
     <div class="nav-wrapper teal lighten-1">
         <ul id="nav-mobile" class="left hide-on-med-and-down">
