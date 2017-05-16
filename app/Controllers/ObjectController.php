@@ -157,5 +157,13 @@ class ObjectController extends Controller {
         return move_uploaded_file($tmp, $path);
     }
 
+    public function getSearch() {
+        return $this->response->view('object-search');
+    }
+
+    public function search() {
+        $search = $this->request->search;
+    }
+
 
 }
