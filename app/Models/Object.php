@@ -15,7 +15,7 @@ class Object extends Model {
                 select object.*, rank() over (PARTITION BY object.type_id order by count(download.object_id) desc) as rate
                 from object 
                     join download on download.object_id = object.id
-                group by object.id
+                group by object.id, object.name
             ) object
             where rate <= {$count}
             order by object.rate desc
