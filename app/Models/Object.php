@@ -12,7 +12,7 @@ class Object extends Model {
     public function top($count = 10) {
         return DB::query("
             select object.id, object.name from (
-                select object.*, rank() over (PARTITION BY object.type_id order by count(download.object_id) desc) as rate
+                select object.id, object.name, rank() over (PARTITION BY object.type_id order by count(download.object_id) desc) as rate
                 from object 
                     join download on download.object_id = object.id
                 group by object.id, object.name
