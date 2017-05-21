@@ -49,4 +49,18 @@ class Author extends Model {
         ", Object::class);
     }
 
+    public function create(array $values) {
+        return DB::query("
+            insert into author (
+              \"name\",
+              \"birthdate\"
+            ) 
+            values(
+              '{$values['name']}',
+              '{$values['birthdate']}'
+            )
+            returning *
+        ", static::class);
+    }
+
 }

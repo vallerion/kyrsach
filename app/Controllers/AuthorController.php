@@ -38,4 +38,21 @@ class AuthorController extends Controller {
     public function add() {
         return $this->response->view('author-add');
     }
+
+    public function create() {
+
+        $name = $this->request->name;
+        $birthdate = $this->request->birthdate;
+
+        $author = $this->author->create([
+            'name' => $name,
+            'birthdate' => $birthdate
+        ]);
+        $author = is_array($author) ? $author[0] : $author;
+
+        return $author ?
+            $this->response->redirect(url('author/' . $author->id))
+            :
+            $this->response->redirect(url('authors/add'));
+    }
 }
