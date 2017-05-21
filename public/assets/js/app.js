@@ -72,7 +72,7 @@ $(document).on('keyup', '#search', function() {
 
                 var html = '';
                 $.each(response, function(index, value) {
-                    html += '<a class="collection-item" href="/object/' + value.id + '">' + value.name + '</a>';
+                    html += '<a class="collection-item" href="' + value.url + '">' + value.name + '</a>';
                 });
 
                 $('#search-result').html(html);

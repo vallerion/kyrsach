@@ -63,8 +63,11 @@ class AuthorController extends Controller {
     public function search() {
         $search = $this->request->search;
 
-        $objects = Author::search($search);
+        $authors = Author::search($search);
 
-        return $this->response->write(json_encode($objects));
+        foreach ($authors as &$author)
+            $author->url = url('/author/' . $author->id);
+
+        return $this->response->write(json_encode($authors));
     }
 }

@@ -166,6 +166,9 @@ class ObjectController extends Controller {
 
         $objects = Object::search($search);
 
+        foreach ($objects as &$object)
+            $object->url = url('/object/' . $object->id);
+
         return $this->response->write(json_encode($objects));
     }
 

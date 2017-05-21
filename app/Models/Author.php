@@ -65,7 +65,7 @@ class Author extends Model {
 
     public static function search($search) {
         return DB::query("
-            select object.*
+            select author.*
               from author_view as author
             where author.name ilike '%$search%'
         ", static::class);
