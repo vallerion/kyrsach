@@ -18,6 +18,11 @@ $route->post('authors/add', 'AuthorController@create');
 $route->get('authors/search', 'AuthorController@getSearch');
 $route->post('authors/search', 'AuthorController@search');
 
+$route->get('roles', 'RoleController@index');
+$route->get('roles/add', 'RoleController@add');
+$route->post('roles/add', 'RoleController@create');
+$route->post('role/{id}/delete', 'RoleController@delete');
+
 $route->get('users', 'UserController@index');
 $route->get('profile/{id}', 'UserController@show');
 

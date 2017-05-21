@@ -90,3 +90,18 @@ $('.datepicker').pickadate({
     selectYears: 100,
     max: true
 });
+
+$(document).on('click', '.role-delete', function() {
+
+    var url = $(this).data('url');
+    var self = this;
+
+    $.ajax({
+        type: 'post',
+        url: url,
+        success: function(response) {
+            $(self).parent().parent().remove();
+        }
+    });
+
+});
