@@ -84,3 +84,8 @@ $(document).on('keyup', '#search', function() {
     }
 
 });
+
+$('.datepicker').pickadate({
+    selectYears: 100,
+    max: true
+});

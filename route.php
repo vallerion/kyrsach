@@ -13,6 +13,7 @@ $route->get('download/{id}', 'ObjectController@download');
 
 $route->get('author/{id}', 'AuthorController@show');
 $route->get('authors', 'AuthorController@index');
+$route->get('authors/add', 'AuthorController@add');
 
 $route->get('users', 'UserController@index');
 $route->get('profile/{id}', 'UserController@show');

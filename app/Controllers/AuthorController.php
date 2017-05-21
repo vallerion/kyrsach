@@ -34,4 +34,8 @@ class AuthorController extends Controller {
             'authors' => $this->author->all()
         ]);
     }
+
+    public function add() {
+        return $this->response->view('author-add');
+    }
 }

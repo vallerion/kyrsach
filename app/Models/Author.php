@@ -7,7 +7,7 @@ use Framework\Model\Model;
 
 class Author extends Model {
 
-    protected $table = 'author';
+    protected $table = 'author_view'; // view
 
     public function top($count = 10) {
         return DB::query("
@@ -19,7 +19,7 @@ class Author extends Model {
                         where download.object_id = object_author_role.object_id
                 ) as count_download,
                 count(object_author_role.*) as count_role
-                from author
+                from author_view as author
                 join object_author_role on author.id = object_author_role.author_id
                 join object on object.id = object_author_role.object_id
                 join object_type on object_type.id = object.type_id
