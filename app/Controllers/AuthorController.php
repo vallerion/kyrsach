@@ -55,4 +55,16 @@ class AuthorController extends Controller {
             :
             $this->response->redirect(url('authors/add'));
     }
+
+    public function getSearch() {
+        return $this->response->view('author-search');
+    }
+
+    public function search() {
+        $search = $this->request->search;
+
+        $objects = Author::search($search);
+
+        return $this->response->write(json_encode($objects));
+    }
 }

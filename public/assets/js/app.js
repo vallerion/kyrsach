@@ -51,6 +51,7 @@ $(document).on('click', '.remove-row', function(){
 $(document).on('keyup', '#search', function() {
 
     var value = $(this).val();
+    var url = $(this).data('url');
 
     if(value.length) {
 
@@ -58,7 +59,7 @@ $(document).on('keyup', '#search', function() {
 
         $.ajax({
             type: 'post',
-            url: '/objects/search',
+            url: url,
             data: {
                 search: value
             },

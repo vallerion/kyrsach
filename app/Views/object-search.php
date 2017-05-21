@@ -74,7 +74,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <div class="input-field">
-                        <input placeholder="Введите поисковый запрос" id="search" type="search" name="search" required>
+                        <input placeholder="Введите поисковый запрос" data-url="<?=url('/objects/search')?>" id="search" type="search" name="search" required>
                         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                         <i class="material-icons">close</i>
                     </div>
