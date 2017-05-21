@@ -53,7 +53,10 @@
                         <span class="card-title"><?=$object->name?></span>
                         <p><b>Тип:</b> <?=$object->type()->name?></p>
                         <p><b>Формат:</b> <?=$object->format?></p>
-                        <p><b>Размер:</b> <?=$object->size?> байт</p>
+                        <p><b>Жанр:</b>
+                            <?=implode(', ', array_map(function($item) {
+                                return $item->name;
+                            }, $object->genres()))?></p>
                         <p><b>Дата создания:</b> <?=date("d.m.Y H:s", strtotime($object->create_at))?></p>
                         <p><b>Авторы:</b></p>
                         <ul class="collection teal-text">

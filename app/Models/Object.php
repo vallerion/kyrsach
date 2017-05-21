@@ -41,6 +41,14 @@ class Object extends Model {
         ", Author::class);
     }
 
+    public function genres() {
+        return DB::query("
+            select genre.*
+              from genre
+              join object_genre on object_genre.genre_id = genre.id and object_genre.object_id = {$this->id}
+        ", Genre::class);
+    }
+
 
     public static function objectGenre($objectId, array $genreIds) {
 
